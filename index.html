@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Music Mantra Band — premium live music for weddings, corporate events, and private parties. Led by Mantesh Goudar.">
+  <title>Music Mantra Band | Premium Live Music</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --card: #141414;
+      --gold: #d4af37;
+      --gold-hover: #b8952e;
+      --text: #f5f5f5;
+      --muted: #a0a0a0;
+      --nav-height: 4.5rem;
+      --max: 1120px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      margin: 0;
+      background: var(--black);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      line-height: 1.15;
+      margin: 0 0 1rem;
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .wrap {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 3rem;
+      height: 2px;
+      margin: 1rem auto 0;
+      background: var(--gold);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      font-family: "Inter", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:focus-visible,
+    .nav-toggle:focus-visible,
+    .nav-links a:focus-visible,
+    .socials a:focus-visible,
+    .wa-float:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(212, 175, 55, 0.28);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(212, 175, 55, 0.28);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 40;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.92);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.75rem 1.25rem 1.25rem;
+      background: #111;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      padding: 0.75rem 0.5rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .nav-book {
+      padding: 0.6rem 0.95rem;
+      min-height: 2.5rem;
+      font-size: 0.72rem;
+    }
+
+    .nav-toggle {
+      width: 2.75rem;
+      height: 2.75rem;
+      display: grid;
+      place-items: center;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 2px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: calc(var(--nav-height) + 3rem) 0 5rem;
+      /* HERO IMAGE — replace this Unsplash URL */
+      background:
+        linear-gradient(180deg, rgba(10, 10, 10, 0.45) 0%, rgba(10, 10, 10, 0.72) 55%, rgba(10, 10, 10, 0.94) 100%),
+        url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
+      background-color: var(--black);
+    }
+
+    .hero-copy {
+      max-width: 42rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.85rem;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.4rem);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero p {
+      max-width: 34rem;
+      color: #d7d7d7;
+      font-size: 1.05rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* About & Band */
+    .split {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .split h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+    }
+
+    .repertoire {
+      margin: 0.25rem 0 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .repertoire li {
+      position: relative;
+      padding-left: 1.15rem;
+      color: var(--text);
+    }
+
+    .repertoire li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 0.4rem;
+      height: 0.4rem;
+      background: var(--gold);
+    }
+
+    /* Services & Reviews */
+    .cards {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .service-card,
+    .review-card {
+      background: var(--card);
+      padding: 1.75rem 1.5rem;
+    }
+
+    .service-card {
+      border: 1px solid rgba(212, 175, 55, 0.14);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .service-card i {
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 1.15rem;
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      font-size: 1.15rem;
+    }
+
+    .service-card h3,
+    .review-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p,
+    .review-card p {
+      margin-bottom: 0;
+    }
+
+    .review-card {
+      border-left: 3px solid var(--gold);
+    }
+
+    .stars {
+      display: flex;
+      gap: 0.3rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+
+    .review-card cite {
+      display: block;
+      margin-top: 1.15rem;
+      color: var(--text);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3.5rem 0 6.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.18);
+    }
+
+    .footer .logo {
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      font-size: 1.7rem;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .socials a {
+      width: 2.75rem;
+      height: 2.75rem;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .socials a:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(212, 175, 55, 0.25);
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    /* Floating WhatsApp */
+    .wa-float {
+      position: fixed;
+      right: 1.15rem;
+      bottom: 1.15rem;
+      z-index: 45;
+      width: 3.5rem;
+      height: 3.5rem;
+      display: grid;
+      place-items: center;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 1.7rem;
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .wa-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(37, 211, 102, 0.45);
+    }
+
+    @media (min-width: 768px) {
+      section {
+        padding: 6rem 0;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        background: transparent;
+        border: 0;
+      }
+
+      .nav-links a {
+        padding: 0;
+        border: 0;
+        font-size: 0.92rem;
+      }
+
+      .nav-book {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.75rem;
+      }
+
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .repertoire {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.5rem;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .split {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 4rem;
+      }
+
+      .split-reverse {
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+
+      .photo {
+        min-height: 520px;
+      }
+
+      .hero {
+        align-items: center;
+        padding-bottom: 4rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .btn,
+      .service-card,
+      .socials a,
+      .wa-float {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top">Music <span>Mantra</span></a>
+
+      <nav id="site-nav" class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#band">The Band</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-gold nav-book" href="https://wa.me/919923684492" target="_blank" rel="noopener noreferrer">Book Now</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-copy">
+        <p class="eyebrow">Live Music · Weddings · Galas</p>
+        <h1>Elevate Your Event</h1>
+        <p>Premium live music for weddings, corporate events &amp; private parties. High energy performance, soulful vocals.</p>
+        <div class="btn-row">
+          <a class="btn btn-gold" href="https://wa.me/919923684492" target="_blank" rel="noopener noreferrer">Book Us</a>
+          <a class="btn btn-outline" href="#band">Meet The Band</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap split">
+        <div>
+          <h2>About Music Mantra Band</h2>
+          <p>Led by the charismatic singer and performer Mantesh Goudar, Music Mantra Band is a premium live music experience designed to make your event unforgettable. Whether it’s a soulful acoustic dinner set or a high-octane Bollywood dance floor, our versatile repertoire and world-class stage presence ensure your guests are entertained from the first note to the last.</p>
+          <a class="btn btn-gold" href="https://wa.me/919923684492" target="_blank" rel="noopener noreferrer">Check Availability</a>
+        </div>
+        <!-- ABOUT IMAGE — replace this Unsplash src -->
+        <img
+          class="photo"
+          src="https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=1200&q=80"
+          alt="Male singer performing with a microphone under warm stage lights"
+          width="1200"
+          height="1500">
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <h2 class="section-title">Our Services</h2>
+        <div class="cards">
+          <article class="service-card">
+            <i class="fa-solid fa-ring" aria-hidden="true"></i>
+            <h3>Weddings &amp; Sangeets</h3>
+            <p>From the emotional entry song to the high-energy Sangeet night and the grand reception, we provide tailor-made musical sets that perfectly match the flow of your wedding.</p>
+          </article>
+          <article class="service-card">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            <h3>Corporate Events</h3>
+            <p>Sophisticated, entertaining, and professional. We provide the perfect musical backdrop for product launches, annual days, award nights, and corporate dinners.</p>
+          </article>
+          <article class="service-card">
+            <i class="fa-solid fa-glass-cheers" aria-hidden="true"></i>
+            <h3>Private Parties</h3>
+            <p>Birthdays, anniversaries, or exclusive private gatherings. We bring the concert experience directly to your venue with a high-energy setup that gets everyone on their feet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="band">
+      <div class="wrap split split-reverse">
+        <!-- BAND IMAGE — replace this Unsplash src -->
+        <img
+          class="photo"
+          src="https://images.unsplash.com/photo-1499364615650-ec38552f4f34?auto=format&fit=crop&w=1400&q=80"
+          alt="Live band performing together on stage"
+          width="1400"
+          height="933">
+        <div>
+          <h2>The Band</h2>
+          <p>Mantesh Goudar (Lead Vocalist &amp; Founder): With a powerful voice that seamlessly transitions from soulful melodies to energetic party anthems, Mantesh leads the band with unmatched passion and charisma. We are backed by a team of highly talented, professional musicians on Guitar, Saxophone, Keys, and Drums.</p>
+          <h3>Our Repertoire</h3>
+          <ul class="repertoire">
+            <li>Bollywood Top 40</li>
+            <li>Retro &amp; Classics</li>
+            <li>Sufi &amp; Soulful</li>
+            <li>International Pop</li>
+            <li>Regional Hits</li>
+            <li>Instrumental Jazz</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap">
+        <h2 class="section-title">Client Love</h2>
+        <div class="cards">
+          <article class="review-card">
+            <div class="stars" aria-label="5 star review">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <p>“Music Mantra Band completely made our Sangeet night! The energy was incredible...”</p>
+            <cite>Priya &amp; Rahul (Wedding)</cite>
+          </article>
+          <article class="review-card">
+            <div class="stars" aria-label="5 star review">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <p>“A highly professional act. They understood the vibe of our corporate gala...”</p>
+            <cite>Corporate Client (Tech Gala)</cite>
+          </article>
+          <article class="review-card">
+            <div class="stars" aria-label="5 star review">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <p>“Mantesh has an amazing voice. The band was punctual, professional...”</p>
+            <cite>Anniversary Party</cite>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <a class="logo" href="#top">Music <span>Mantra</span></a>
+      <div class="socials">
+        <!-- SOCIAL LINKS — replace Instagram and YouTube hrefs -->
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://wa.me/919923684492" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+      </div>
+      <p>© 2024 Music Mantra Band. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/919923684492" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var links = document.querySelector(".nav-links");
+      var icon = toggle.querySelector("i");
+
+      function setMenu(open) {
+        links.classList.toggle("open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        icon.className = open ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+      }
+
+      toggle.addEventListener("click", function () {
+        setMenu(!links.classList.contains("open"));
+      });
+
+      links.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          setMenu(false);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
